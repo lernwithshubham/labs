@@ -26,6 +26,7 @@ variable "key_name" {
 
 variable "private_ip" {
   type = string
+  default = null
 }
 
 variable "user_data" {

@@ -1,4 +1,6 @@
 provider "aws" {
+  access_key = "<your-access-key>"
+  secret_key = "<your-secret-key>"  
   region = var.aws_region
 }
 
@@ -43,7 +45,6 @@ module "ec2" {
   subnet_id          = module.subnet.subnet_id
   security_group_ids = [module.sg.sg_id]
   key_name           = var.ec2_key_name
-  associate_public_ip = true
   user_data          = var.ec2_user_data
 }
 

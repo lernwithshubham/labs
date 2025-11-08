@@ -15,7 +15,7 @@ sg_ingress_rules = [
 ec2_name          = "web-server"
 ec2_ami           = "ami-0c5ddb3560e768732"
 ec2_instance_type = "t2.micro"
-ec2_key_name      = "<your-key>"
+ec2_key_name      = "testing"
 ec2_private_ip    = "10.0.1.10"
 ec2_user_data     = <<-EOT
   #!/bin/bash

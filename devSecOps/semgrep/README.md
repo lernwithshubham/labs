@@ -22,3 +22,8 @@ sudo apt install -y git python3 python3-pip pipx
 pipx ensurepath
 source ~/.bashrc
 pipx install semgrep
+
+### 2. Verification
+
+python3 --version
+semgrep --version

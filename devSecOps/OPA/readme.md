@@ -13,8 +13,7 @@ Run the following commands to download the OPA binary and move it to your system
 
 ```bash
 # 1. Download the OPA binary (v0.60.0)
-curl -L -o opa [https://openpolicyagent.org/downloads/v0.60.0/opa_linux_amd64_static](https://openpolicyagent.org/downloads/v0.60.0/opa_linux_amd64_static)
-
+curl -L -o opa https://openpolicyagent.org/downloads/v0.60.0/opa_linux_amd64_static
 # 2. Make the binary executable
 chmod 755 ./opa
 
@@ -33,3 +32,4 @@ opa eval -i -d policy.rego 'data.play.allow' --input '{"user": "bob", "groups": 
 # User: "Sarah" (Admin) Action: "delete" Expected Result: true (Allowed)
 
 opa eval -i -d policy.rego 'data.play.allow' --input '{"user": "sarah", "groups": ["admin"], "action": "delete"}'
+

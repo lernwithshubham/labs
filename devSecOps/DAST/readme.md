@@ -30,8 +30,9 @@ sudo usermod -aG docker $USER
 
 ##
 docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py \
-    -t [http://demo.testfire.net](http://demo.testfire.net) \
+    -t http://demo.testfire.net \
     -r test_report.html
 
 ##
 python3 -m http.server 8000
+

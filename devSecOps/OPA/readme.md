@@ -26,10 +26,14 @@ opa version
 
 # User: "Bob" (Developer) Action: "delete" Expected Result: false (Denied)
 
-opa eval -i -d policy.rego 'data.play.allow' --input '{"user": "bob", "groups": ["dev"], "action": "delete"}'
+echo '{"user": "bob", "groups": ["dev"], "action": "delete"}' | opa eval -d policy.rego -i /dev/stdin 'data.play.allow'
+
+
+
 
 
 # User: "Sarah" (Admin) Action: "delete" Expected Result: true (Allowed)
 
-opa eval -i -d policy.rego 'data.play.allow' --input '{"user": "sarah", "groups": ["admin"], "action": "delete"}'
+echo '{"user": "sarah", "groups": ["admin"], "action": "delete"}' | opa eval -d policy.rego -i /dev/stdin 'data.play.allow'
+
 

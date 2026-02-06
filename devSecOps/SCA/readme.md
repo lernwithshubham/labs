@@ -30,7 +30,7 @@ trivy image python:3.4-alpine
 
 ---
 
-## Part 5: Reporting
+## Part 6: Reporting
 **Objective:** specific vulnerability reports to share with developers or auditors.
 
 ### 1. Download the HTML Template

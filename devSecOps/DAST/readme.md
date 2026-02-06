@@ -1,38 +1,49 @@
-# DAST Automation with OWASP ZAP (Docker)
+# DAST Demo: OWASP ZAP on AWS
 
-This guide demonstrates how to set up a Dynamic Application Security Testing (DAST) pipeline on a "headless" Linux server (e.g., AWS EC2 Ubuntu). We use the official **OWASP ZAP Docker image** to scan a test application (`demo.testfire.net`) and generate an HTML vulnerability report.
+This guide walks through setting up a **Dynamic Application Security Testing (DAST)** pipeline on an AWS Ubuntu instance. We will launch a vulnerable target application (**OWASP Juice Shop**) and scan it using the lightweight **OWASP ZAP Baseline Scan**.
 
 ## Prerequisites
-* A Linux environment (Ubuntu/Debian recommended).
-* Root or `sudo` access.
-* Port **8000** allowed in your firewall/AWS Security Group (for viewing the report).
+* [cite_start]**AWS EC2 Instance:** Ubuntu 20.04 or 22.04[cite: 168].
+* [cite_start]**Security Group Rules:** Ensure the following "Inbound Rules" are open[cite: 173, 174]:
+    * **Port 22:** SSH (Your IP)
+    * **Port 3000:** Custom TCP (Your IP) - To view the target app.
+    * **Port 8000:** Custom TCP (Your IP) - To view the report.
 
 ---
 
-## 1. Environment Setup
+## Part 1: Environment Setup
 
-First, we need to install Docker, as we will run ZAP as a container to avoid complex dependency management.
+[cite_start]First, update the system and install Docker, which is required to run both the target app and the scanner[cite: 238, 239].
 
 ```bash
-# 1. Update your package list
+# 1. Update system packages
 sudo apt-get update
 
 # 2. Install Docker
 sudo apt-get install -y docker.io
 
-# 3. Start the Docker service and enable it to launch on boot
-sudo systemctl start docker
-sudo systemctl enable docker
+Launch the Target Application
 
-# 4. (Optional) Allow your current user to run Docker without 'sudo'
-# NOTE: You must log out and log back in for this to take effect.
-sudo usermod -aG docker $USER
+# 1. Run Juice Shop in the background (detached mode)
+docker run -d --name juice-shop -p 3000:3000 bkimminich/juice-shop
 
-##
-docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py \
-    -t http://demo.testfire.net \
-    -r test_report.html
+# 2. Verify it is running
+curl -I http://0.0.0.0:3000
 
-##
+Run the DAST Scan (OWASP ZAP)
+
+mkdir -p ~/zap-demo
+cd ~/zap-demo
+
+chmod 777 $(pwd) # if you are working as a root user
+
+Execute the Scan Run the scanner
+
+docker run --rm -t --network="host" \
+  -v $(pwd):/zap/wrk/:rw \
+  ghcr.io/zaproxy/zaproxy:stable \
+  zap-baseline.py \
+  -t http://0.0.0.0:3000 \
+  -r zap_report.html
+
 python3 -m http.server 8000
-

@@ -21,3 +21,29 @@ curl -sfL [https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/ins
 
 # 3. Verify installation
 trivy --version
+
+# 4. Run the Scan
+trivy fs .
+
+# 5. Scan container images
+trivy image python:3.4-alpine
+
+---
+
+## Part 5: Reporting
+**Objective:** specific vulnerability reports to share with developers or auditors.
+
+### 1. Download the HTML Template
+Trivy requires a template file to generate HTML reports. Download the official template first.
+
+```bash
+curl -o html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
+
+trivy fs --format template --template "@html.tpl" --output report.html .
+
+
+python3 -m http.server 8000
+
+---
+
+Open in Browser Navigate to the following URL (replace Public-IP with your AWS instance IP): http://<YOUR_AWS_PUBLIC_IP>:8000/report.html

@@ -27,8 +27,7 @@ trivy fs .
 
 # 5. Scan container images
 trivy image python:3.4-alpine
-
----
+```
 
 ## Part 6: Reporting
 **Objective:** specific vulnerability reports to share with developers or auditors.
@@ -43,7 +42,11 @@ trivy fs --format template --template "@html.tpl" --output report.html .
 
 
 python3 -m http.server 8000
-
+```
 ---
 
-Open in Browser Navigate to the following URL (replace Public-IP with your AWS instance IP): http://<YOUR_AWS_PUBLIC_IP>:8000/report.html
+
+Open in Browser Navigate to the following URL (replace Public-IP with your AWS instance IP): 
+```bash
+http://<YOUR_AWS_PUBLIC_IP>:8000/report.html
+```

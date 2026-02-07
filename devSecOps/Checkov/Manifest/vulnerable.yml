@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vulnerable-app
+  # MISTAKE 1: No namespace defined (defaults to 'default')
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    securityContext:
+      # MISTAKE 2: Privileged mode (Critical Risk)
+      privileged: true
+      # MISTAKE 3: No 'runAsNonRoot' defined (runs as Root)

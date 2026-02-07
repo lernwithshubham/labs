@@ -104,10 +104,9 @@ Imagine the API key was leaked. We need to rotate it immediately without redeplo
 ```bash
 # 1. Update the Secret in AWS
 
-aws secretsmanager create-secret \
-    --name prod/stripe/apikey \
-    --description "Production API Key for Payment Gateway" \
-    --secret-string "sk_new_<alphanumerstring>"
+aws secretsmanager put-secret-value \
+    --secret-id prod/stripe/apikey \
+    --secret-string "sk_new_<alphanumericstring>"
 
 # 2. Re-run the Application
 

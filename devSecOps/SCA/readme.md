@@ -17,7 +17,7 @@ Copy and paste these commands to install the latest version of Trivy.
 sudo apt-get update
 
 # 2. Install Trivy (One-line official installer)
-curl -sfL [https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh](https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh) | sudo sh -s -- -b /usr/local/bin
+curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
 
 # 3. Verify installation
 trivy --version
@@ -50,3 +50,4 @@ Open in Browser Navigate to the following URL (replace Public-IP with your AWS i
 ```bash
 http://<YOUR_AWS_PUBLIC_IP>:8000/report.html
 ```
+

@@ -16,7 +16,7 @@ This lab requires two separate Linux environments (e.g., AWS EC2 instances runni
 
 * **VM 1: Security Server (Wazuh Manager)**
     * **Size:** Minimum `t3.medium` (4GB RAM required for the indexer).
-    * [cite_start]**Network:** Allow inbound TCP ports `22` (SSH), `443` (Dashboard), `1514` (Agent Data), and `1515` (Agent Enrollment)[cite: 669].
+    * **Network:** Allow inbound TCP ports `22` (SSH), `443` (Dashboard), `1514` (Agent Data), and `1515` (Agent Enrollment).
 * **VM 2: Target Server (Kubernetes Node)**
     * **Size:** `t2.micro` or any existing node in your cluster.
     * **Network:** Allow inbound TCP port `22` (SSH).
@@ -25,12 +25,12 @@ This lab requires two separate Linux environments (e.g., AWS EC2 instances runni
 
 ## 🚀 Part 1: Deploy the Central SIEM (VM 1)
 
-First, we build the "brain" of the SOC. [cite_start]This script automatically installs the Wazuh Indexer, Manager, and Dashboard[cite: 684].
+First, we build the "brain" of the SOC. This script automatically installs the Wazuh Indexer, Manager, and Dashboard.
 
 1. SSH into **VM 1**.
-2. [cite_start]Download and run the automated installer[cite: 676, 682]:
+2. Download and run the automated installer:
 ```bash
-curl -sO [https://packages.wazuh.com/4.7/wazuh-install.sh](https://packages.wazuh.com/4.7/wazuh-install.sh)
+curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh
 sudo bash wazuh-install.sh -a --ignore-check
 ```
 3. Important: Wait 5-8 minutes for the installation to complete. Copy the auto-generated admin password printed at the end of the terminal output.

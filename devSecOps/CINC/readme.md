@@ -19,7 +19,7 @@ We define a **"Web Server Hardening"** profile with three rules:
 Run the following command to install the tool:
 
 ```bash
-curl -L [https://omnitruck.cinc.sh/install.sh](https://omnitruck.cinc.sh/install.sh) | sudo bash -s -- -P cinc-auditor
+curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-auditor
 ```
 
 ## 🛠️ Part 2: Setup "Non-Compliant" State

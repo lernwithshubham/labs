@@ -3,7 +3,7 @@ terraform {
         aws = {
             source = "hashicorp/aws"
             # optional
-            version = "~> 3.0"
+            version = "6.32.1"
        }
     }
 }
@@ -108,19 +108,19 @@ resource "aws_network_interface" "test-ni" {
 
 # Attaching an elastic IP to the network interface
 resource "aws_eip" "test-eip" {
-    vpc = true
+    domain = "vpc"
     network_interface = aws_network_interface.test-ni.id
     associate_with_private_ip = "10.0.1.10"
+    depends_on = [aws_instance.test-instance]
 }
 
 # Creating an Ubuntu EC2 instance
 resource "aws_instance" "test-instance" {
-    ami = "ami-00399ec92321828f5"
-    instance_type = "t2.micro"
+    ami = "ami-0503ed50b531cc445"
+    instance_type = "t3.micro"
     availability_zone = "us-east-2b"
-    key_name = "<your-aws-key>"
-    network_interface {
-        device_index = 0
+    key_name = "devopsdemons"
+    primary_network_interface {
         network_interface_id = aws_network_interface.test-ni.id
     }
     user_data = <<-EOF
@@ -133,4 +133,4 @@ resource "aws_instance" "test-instance" {
     tags = {
         Name = "test-instance"
     }
-}   
+}

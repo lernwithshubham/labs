@@ -1,0 +1,7 @@
+{
+    "horizon": 24,
+    "dynamic_threshold_k": 1.5,
+    "min_alert_leeway": 10.0,
+    "random_seed": 42
+  }
+  

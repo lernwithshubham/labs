@@ -1,0 +1,8 @@
+{
+    "paths": {
+      "log_file": "../log-analysis-lab/application.log",
+      "pred_alerts_csv": "../predictive-alerts-lab/outputs/predictions_with_alerts.csv"
+    },
+    "correlation_window": 600
+  }
+  

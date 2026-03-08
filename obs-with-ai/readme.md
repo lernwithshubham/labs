@@ -8,13 +8,14 @@ I am going to share the python scripts with you, one by one, you have to (1)conf
 
 1. for Windows
 
-venv\Scripts\activate.bat
-python3 -m venv venv
+python -m venv venv
+venv\Scripts\activate.bat # (Command Prompt)
+venv\Scripts\Activate.ps1 # (PowerShell)
 
 2. for MAC/Linux
 
-source venv/bin/activate
 python3 -m venv venv
+source venv/bin/activate
 
 ```
 

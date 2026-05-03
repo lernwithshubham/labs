@@ -108,7 +108,6 @@ resource "aws_network_interface" "test-ni" {
 
 # Attaching an elastic IP to the network interface
 resource "aws_eip" "test-eip" {
-    vpc = true
     network_interface = aws_network_interface.test-ni.id
     associate_with_private_ip = "10.0.1.10"
 }
